@@ -1,0 +1,19 @@
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: grey;
+  background-color: darkslategrey;
+  margin: 0;
+}
+
+html, body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  background-color: darkslategrey;
+  height: 100vh;
+  width: 100vw;
+  margin: 0; 
+}

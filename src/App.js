@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./App.css"
 
 // Define car details / columns of table to search.
 const details = ["Year", "Make", "Car"];
@@ -59,7 +60,7 @@ function App() {
   
   // HTML/JSX to display
   return (
-    <>
+    <body className="container">
     <h1>Live Filtering</h1>
     <form>
       <div>
@@ -73,14 +74,14 @@ function App() {
         <input type="text" id="input-search" onChange={inputSearchHandler}/>
       </div>
     </form>
-    <br />
+    <br/>
     <table>
         <tr>
           { details.map((item) => <th>{ item }</th>) }
         </tr>
         {listItems}
     </table>
-  </>);
+  </body>);
 };
 
 export default App;
