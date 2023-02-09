@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# Live Filter - React App (useEffect)
+
+React application that filters a list live based on search terms.  Developed to learn about the useEffect React hook.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
