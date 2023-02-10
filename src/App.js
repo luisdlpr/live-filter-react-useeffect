@@ -19,7 +19,8 @@ const objects = [
 ];
 
 function App() {
-  // State hooks for search and search types as well as current set of listed objects.
+  // State hooks for search and search types as well as current set of 
+  // listed objects.
   const [inputSearch, setInputSearch] = useState("");
   const [inputType, setInputType] = useState("year");
   const [filteredObjects, setFilteredObjects] = useState(objects)
@@ -33,17 +34,24 @@ function App() {
     setInputType(e.target.value);
   };
 
-  // whenever search state is updated, as a side effect create a new, filtered set of objects to display.
+  // whenever search state is updated, as a side effect create a new, 
+  // filtered set of objects to display.
   useEffect(() => {
     setFilteredObjects(() => {
-      const newObjects = objects.filter(item => item[inputType].toLowerCase().includes(inputSearch.toLowerCase()));
+      const newObjects = objects.filter(item =>
+        item[inputType].toLowerCase().includes(inputSearch.toLowerCase())
+      );
       return newObjects;
     });
   }, [inputSearch, inputType]);
 
   // get filtered object list in JSX
   let listItems = filteredObjects.map((item) => {
-    let entries = details.map((key) => <td> { item[key.toLowerCase()] } </td>);
+    let entries = details.map((key) => 
+      <td className="p-2 text-slate-400 font-sans text-3xl font-thin">
+        { item[key.toLowerCase()] }
+      </td>
+    );
     return (
       <>
         <tr>
@@ -60,34 +68,81 @@ function App() {
   
   // HTML/JSX to display
   return (
-    <body className="container">
-      <div className="title"><h1>Live Filtering</h1></div>
-      <div>
-        <div className="search">
-          <form>
-            <div>
-              <label htmlFor="input-type">Filter by:</label>
-              <select name="Search by" id="input-type" onChange={inputTypeHandler}>
-                { listSearchType }
+    <body className="h-screen bg-gradient-to-b from-slate-900 to-slate-800 
+      w-screen overflow-auto p-10 font-thin">
+      {/* title */}
+      <div className="container mx-auto">
+        <h1 className="text-8xl truncate italic tracking-wider text-center
+          text-slate-300 p-4 pb-8">
+          Live Filtering
+        </h1>
+      </div>
+
+      {/* filters container */}
+      <div className="container mx-auto">
+        {/* Filter row. */}
+        <form className="bg-slate-900 rounded-lg">
+          <div className="p-2 flex flex-row justify-between">
+
+            {/* Label: Filter by */}
+            <div className="basis-1/2">
+              <label className="text-slate-500 text-4xl"
+                htmlFor="input-type">
+                Filter by:
+              </label>
+            </div>
+            
+            {/* Input: Type */}
+            <div className="basis-1/2">
+              <
+                select 
+                className="bg-slate-700 text-slate-500 indent-3 w-1/2 
+                  float-right rounded-full h-full text-4xl" 
+                name="Search by" 
+                id="input-type" 
+                onChange={inputTypeHandler}
+              >
+              { listSearchType }
               </select>
             </div>
-            <div>
-              <label htmlFor="input-search">Search:</label>
-              <input type="text" id="input-search" onChange={inputSearchHandler}/>
+          </div>
+
+          {/* Search row.  */}
+          <div className="p-2 flex flex-row justify-between">
+            {/* Label: Search: */}
+            <div className="basis-1/2">
+              <label htmlFor="input-search" 
+                className="w-full text-slate-500 text-4xl">
+                Search:
+              </label>
             </div>
-          </form>
-        </div>
-        <br/>
-        <div className="objectList">
-          <table>
-              <tr>
-                { details.map((item) => <th>{ item }</th>) }
-              </tr>
-              {listItems}
-          </table>
-        </div>
+
+            {/* Input: Search Terms */}
+            <div className="basis-1/2">
+              <input className="bg-slate-700 text-slate-500 indent-3 w-1/2 
+                float-right rounded-full h-full text-4xl"
+                type="text" id="input-search" onChange={inputSearchHandler}/>
+            </div>
+          </div>
+        </form>
       </div>
-  </body>);
+        
+      <br/>
+      
+      {/* Table of objects */}
+      <div className="container mx-auto">
+        <table className="table-auto w-full border-collapse bg-gradient-to-b 
+          from-slate-800 to-slate-700 text-left">
+            <tr className="bg-slate-900">
+              { details.map((item) => 
+                <th className="p-2 text-4xl text-slate-500">{ item }</th>) 
+              }
+            </tr>
+            {listItems}
+        </table>
+      </div>
+    </body>
+  );
 };
 
 export default App;
