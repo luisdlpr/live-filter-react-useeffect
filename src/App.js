@@ -21,7 +21,7 @@ const objects = [
 function App() {
   // State hooks for search and search types as well as current set of listed objects.
   const [inputSearch, setInputSearch] = useState("");
-  const [inputType, setInputType] = useState("car");
+  const [inputType, setInputType] = useState("year");
   const [filteredObjects, setFilteredObjects] = useState(objects)
   
   // Handlers to update state of input search and search type.
@@ -61,26 +61,32 @@ function App() {
   // HTML/JSX to display
   return (
     <body className="container">
-    <h1>Live Filtering</h1>
-    <form>
+      <div className="title"><h1>Live Filtering</h1></div>
       <div>
-        <label htmlFor="input-type">Filter by:</label>
-        <select name="Search by" id="input-type" onChange={inputTypeHandler}>
-          { listSearchType }
-        </select>
+        <div className="search">
+          <form>
+            <div>
+              <label htmlFor="input-type">Filter by:</label>
+              <select name="Search by" id="input-type" onChange={inputTypeHandler}>
+                { listSearchType }
+              </select>
+            </div>
+            <div>
+              <label htmlFor="input-search">Search:</label>
+              <input type="text" id="input-search" onChange={inputSearchHandler}/>
+            </div>
+          </form>
+        </div>
+        <br/>
+        <div className="objectList">
+          <table>
+              <tr>
+                { details.map((item) => <th>{ item }</th>) }
+              </tr>
+              {listItems}
+          </table>
+        </div>
       </div>
-      <div>
-        <label htmlFor="input-search">Search</label>
-        <input type="text" id="input-search" onChange={inputSearchHandler}/>
-      </div>
-    </form>
-    <br/>
-    <table>
-        <tr>
-          { details.map((item) => <th>{ item }</th>) }
-        </tr>
-        {listItems}
-    </table>
   </body>);
 };
 
