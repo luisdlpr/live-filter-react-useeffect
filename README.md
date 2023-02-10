@@ -2,6 +2,8 @@
 
 React application that filters a list live based on search terms.  Developed to learn about the useEffect React hook.
 
+Initially used raw CSS to style again, but switched to using TailwindCSS to learn to use popular frameworks.  Maybe I will try MUI for the next project?
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
