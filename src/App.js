@@ -69,69 +69,80 @@ function App() {
   // HTML/JSX to display
   return (
     <body className="h-screen bg-gradient-to-b from-slate-900 to-slate-800 
-      w-screen overflow-auto p-10">
+      w-screen overflow-auto p-10 font-thin">
       {/* title */}
-      <div className="container object-top mx-auto">
-        <h1 className="font-sans text-8xl truncate font-thin italic 
-          tracking-wider text-center text-slate-300 p-4 pb-8">
+      <div className="container mx-auto">
+        <h1 className="text-8xl truncate italic tracking-wider text-center
+          text-slate-300 p-4 pb-8">
           Live Filtering
         </h1>
       </div>
-      {/* filters container */}
-      <div className="container object-center mx-auto">
-        <div>
-          <form className="bg-slate-900 rounded-lg">
-            <div className="p-2 flex flex-row justify-between">
-              <div className="basis-1/2">
-                <label className="text-slate-500 font-sans font-thin text-4xl"
-                  htmlFor="input-type">
-                  Filter by:
-                </label>
-              </div>
-              <div className="basis-1/2">
-                <
-                  select 
-                  className="bg-slate-700 text-slate-500 indent-3 w-1/2 
-                    float-right rounded-full h-full text-4xl font-thin 
-                    font-sans" 
-                  name="Search by" 
-                  id="input-type" 
-                  onChange={inputTypeHandler}
-                >
-                { listSearchType }
-                </select>
-              </div>
-            </div>
-            <div className="p-2 flex flex-row justify-between">
-              <div className="basis-1/2">
-                <label htmlFor="input-search" 
-                  className="w-full text-slate-500 font-sans font-thin 
-                  text-4xl">
-                  Search:
-                </label>
-              </div>
-              <div className="basis-1/2">
-                <input className="bg-slate-700 text-slate-500 indent-3 w-1/2 
-                  float-right rounded-full h-full text-4xl font-thin font-sans"
-                  type="text" id="input-search" onChange={inputSearchHandler}/>
-              </div>
-            </div>
-          </form>
-        </div>
-        
-        <br/>
 
-        <div className="container mx-auto columns-1">
-          <table className="table-auto w-full border-collapse bg-gradient-to-b from-slate-800 to-slate-700
-            text-left">
-              <tr className="bg-slate-900">
-                { details.map((item) => <th className="p-2 text-4xl font-thin text-slate-500">{ item }</th>) }
-              </tr>
-              {listItems}
-          </table>
-        </div>
+      {/* filters container */}
+      <div className="container mx-auto">
+        {/* Filter row. */}
+        <form className="bg-slate-900 rounded-lg">
+          <div className="p-2 flex flex-row justify-between">
+
+            {/* Label: Filter by */}
+            <div className="basis-1/2">
+              <label className="text-slate-500 text-4xl"
+                htmlFor="input-type">
+                Filter by:
+              </label>
+            </div>
+            
+            {/* Input: Type */}
+            <div className="basis-1/2">
+              <
+                select 
+                className="bg-slate-700 text-slate-500 indent-3 w-1/2 
+                  float-right rounded-full h-full text-4xl" 
+                name="Search by" 
+                id="input-type" 
+                onChange={inputTypeHandler}
+              >
+              { listSearchType }
+              </select>
+            </div>
+          </div>
+
+          {/* Search row.  */}
+          <div className="p-2 flex flex-row justify-between">
+            {/* Label: Search: */}
+            <div className="basis-1/2">
+              <label htmlFor="input-search" 
+                className="w-full text-slate-500 text-4xl">
+                Search:
+              </label>
+            </div>
+
+            {/* Input: Search Terms */}
+            <div className="basis-1/2">
+              <input className="bg-slate-700 text-slate-500 indent-3 w-1/2 
+                float-right rounded-full h-full text-4xl"
+                type="text" id="input-search" onChange={inputSearchHandler}/>
+            </div>
+          </div>
+        </form>
       </div>
-  </body>);
+        
+      <br/>
+      
+      {/* Table of objects */}
+      <div className="container mx-auto">
+        <table className="table-auto w-full border-collapse bg-gradient-to-b 
+          from-slate-800 to-slate-700 text-left">
+            <tr className="bg-slate-900">
+              { details.map((item) => 
+                <th className="p-2 text-4xl text-slate-500">{ item }</th>) 
+              }
+            </tr>
+            {listItems}
+        </table>
+      </div>
+    </body>
+  );
 };
 
 export default App;
